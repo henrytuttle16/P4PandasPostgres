@@ -17,7 +17,7 @@ file_path = 'Retail_Sales_Data.xlsx'
 # Create engine outside of if statements
 username = 'postgres'
 # this password will change per whoever is running it
-password = 'watermelon'
+password = 'admin'
 host = 'localhost'
 port = '5432'
 database = 'is303'
