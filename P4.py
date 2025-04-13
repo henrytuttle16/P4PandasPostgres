@@ -90,7 +90,6 @@ elif iUserInput == 2:
     
     # Make it the variable in the list 
     SelectedCategory = lstCategories[SelectedCategory-1]
-    print(SelectedCategory) # test to see if it worked 
 
     # Filter data for the selected category
     dfCategory = dfImported[dfImported['category'] == SelectedCategory].copy()
@@ -112,7 +111,6 @@ elif iUserInput == 2:
     print(f"Total Units Sold: {total_units}")
 
     # display bar chart
-
     # Using group by on the product to get one row for each product
     dfProductSales = dfCategory.groupby('product')['total_price'].sum()
 
