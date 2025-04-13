@@ -17,7 +17,7 @@ file_path = 'Retail_Sales_Data.xlsx'
 # Create engine outside of if statements
 username = 'postgres'
 # this password will change per whoever is running it
-password = '12345'
+password = 'watermelon'
 host = 'localhost'
 port = '5432'
 database = 'is303'
@@ -97,11 +97,10 @@ elif iUserInput == 2:
     dfCategory = dfImported[dfImported['category'] == SelectedCategory]
 
     # sum total calculation
-    dfCategory['total_price'] = dfCategory['quantity_sold']*dfCategory['unit_price']
     total_sales = dfCategory['total_price'].sum()
     
     # avg sale price
-    average_price = dfCategory['unit_price'].mean()
+    average_price = dfCategory['total_price'].mean()
 
     # total units sold
     total_units = dfCategory['quantity_sold'].sum()
@@ -109,7 +108,7 @@ elif iUserInput == 2:
     # print the calculations
     print(f"\nSummary for category: {SelectedCategory}")
     print(f"Total Sales: ${total_sales:,.2f}")
-    print(f"Average Price: ${average_price:,.2f}")
+    print(f"Average Sales: ${average_price:,.2f}")
     print(f"Total Units Sold: {total_units}")
 
     # display bar chart
