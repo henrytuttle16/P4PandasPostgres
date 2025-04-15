@@ -9,7 +9,7 @@ import matplotlib.pyplot as plot
 import psycopg2
 
 # Get user input
-iUserInput = int(input(f'If you want to import data, enter 1. If you want to see summaries of stored data, enter 2. Enter any other value to exit the program: '))
+iUserInput = int(input(f'\nIf you want to import data, enter 1. \nIf you want to see summaries of stored data, enter 2. \nEnter any other value to exit the program: '))
 
 # Set excel file to variable
 file_path = 'Retail_Sales_Data.xlsx'
@@ -72,7 +72,7 @@ if iUserInput == 1:
 
 # Logic for data summary input (2)
 elif iUserInput == 2:
-    print(f"The following are all the categories that have been sold: ")
+    print(f"\nThe following are all the categories that have been sold: ")
 
     # Read dataframe to do SQL
     dfImported = pd.read_sql_query("SELECT * FROM sale", con=engine)
@@ -95,20 +95,19 @@ elif iUserInput == 2:
     dfCategory = dfImported[dfImported['category'] == SelectedCategory].copy()
 
     # sum total calculation
-    dfCategory['total_price'] = dfCategory['quantity_sold']*dfCategory['unit_price']
     total_sales = dfCategory['total_price'].sum()
     
     # avg sale price
-    average_price = dfCategory['unit_price'].mean()
+    average_price = dfCategory['total_price'].mean()
 
     # total units sold
     total_units = dfCategory['quantity_sold'].sum()
 
     # print the calculations
     print(f"\nSummary for category: {SelectedCategory}")
-    print(f"Total Sales: ${total_sales:,.2f}")
-    print(f"Average Price: ${average_price:,.2f}")
-    print(f"Total Units Sold: {total_units}")
+    print(f"Total sales for {SelectedCategory}: ${total_sales:,.2f}")
+    print(f"Average sale amount for {SelectedCategory}: ${average_price:,.2f}")
+    print(f"Total units sold for {SelectedCategory}: {total_units}")
 
     # display bar chart
     # Using group by on the product to get one row for each product
